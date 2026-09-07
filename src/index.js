@@ -26,8 +26,11 @@ const {
   COMPRAS_CATEGORY_ID,
   SUPORTE_CATEGORY_ID,
   PIX_KEY,
+  PIX_CHAVE,
   PIX_NAME = 'nxFPS'
 } = process.env;
+
+const PIX = PIX_KEY || PIX_CHAVE;
 
 const required = {
   DISCORD_TOKEN,
@@ -92,7 +95,7 @@ function buildCentralMessage() {
       'Seja bem-vindo à **nxFPS**.\n' +
       'Estamos prontos para ajudar você. Selecione abaixo o departamento desejado e abra seu atendimento de forma rápida e segura.'
     )
-    .setColor(0x111111)
+    .setColor(0xFFFFFF)
     .setThumbnail('attachment://logo.png')
     .setImage('attachment://central-banner.png')
     .setFooter({ text: 'nxFPS • Tecnologia & Performance' })
@@ -172,10 +175,9 @@ async function createTicket(interaction, type) {
       `Olá ${user}, seja bem-vindo ao seu atendimento exclusivo.\n\n` +
       `👤 **Cliente**\n${user} (${user.username})\n\n` +
       `ℹ️ **Tipo**\n${typeLabel}\n\n` +
-      `👥 **Atendente**\nNão assumido\n\n` +
-      `**Informação Declarada**\n${type === 'compras' ? 'Atendimento de compras' : 'Solicitação de suporte'}`
+      `👥 **Atendente**\nNão assumido`
     )
-    .setColor(type === 'compras' ? 0x2b8a3e : 0x5865F2)
+    .setColor(0xFFFFFF)
     .setFooter({ text: 'nxFPS • Tecnologia & Performance' })
     .setTimestamp();
 
@@ -283,18 +285,18 @@ client.on('interactionCreate', async interaction => {
       if (!isStaff(interaction)) {
         return interaction.reply({ content: 'Somente a staff pode enviar o PIX.', ephemeral: true });
       }
-      if (!PIX_KEY) {
-        return interaction.reply({ content: 'A variável PIX_KEY ainda não foi configurada.', ephemeral: true });
+      if (!PIX) {
+        return interaction.reply({ content: 'A chave PIX ainda não foi configurada no Railway.', ephemeral: true });
       }
 
       const embed = new EmbedBuilder()
         .setTitle('nxFPS • Pagamento via PIX')
         .setDescription(
-          `**Chave PIX:**\n\`${PIX_KEY}\`\n\n` +
+          `**Chave PIX:**\n\`${PIX}\`\n\n` +
           `**Recebedor:** ${PIX_NAME}\n\n` +
           'Após o pagamento, envie o comprovante neste ticket.'
         )
-        .setColor(0x2b8a3e);
+        .setColor(0xFFFFFF);
 
       return interaction.reply({ embeds: [embed] });
     }
