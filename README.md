@@ -1,24 +1,28 @@
-# nxFPS • Central de Atendimento
+# nxFPS • Central de Atendimento V2
 
-Bot de tickets para Discord com duas opções:
-- 🛒 Comprar
-- 🛠️ Suporte
+Painel estilo central de atendimento com:
+- embed com banner
+- miniatura/logo
+- menu suspenso "Selecione o departamento..."
+- opções: Compras / Suporte & Ajuda
 
-## Recursos
-- Painel com `/central`
-- Ticket privado automático
-- Identifica cliente e tipo do ticket
-- Botões para a staff: Assumir Ticket, Enviar PIX, Aprovar Compra, Liberar Atendimento e Fechar Ticket
-- Identidade nxFPS
+## Como usar
+1. Suba esses arquivos para o GitHub.
+2. No Railway, deixe as variáveis:
+   - DISCORD_TOKEN
+   - CLIENT_ID
+   - GUILD_ID
+   - STAFF_ROLE_ID
+   - COMPRAS_CATEGORY_ID
+   - SUPORTE_CATEGORY_ID
+   - PIX_KEY
+   - PIX_NAME
+3. O Railway vai redeployar.
+4. No Discord, use `/central`.
 
-## Configuração
-1. Instale Node.js 18+
-2. Crie o bot no Discord Developer Portal
-3. Convide o bot com permissões para ver/enviar mensagens e gerenciar canais
-4. Copie `.env.example` para `.env`
-5. Preencha os IDs, token e sua chave Pix
-6. Rode `npm install`
-7. Rode `npm start`
-8. No Discord, use `/central`
+## Observação
+O painel usa:
+- `assets/central-banner.png`
+- `assets/logo.png`
 
-Nunca compartilhe o token do bot.
+Se quiser trocar a arte, substitua esses arquivos mantendo os mesmos nomes.
